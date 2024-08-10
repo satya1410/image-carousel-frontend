@@ -1,0 +1,132 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    background-color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.carousel-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    z-index: 1;
+    opacity: 0.3; /* Faded effect */
+}
+
+.carousel-container {
+    position: relative;
+    width: 80%;
+    max-width: 1000px;
+    height: 60vh;
+    perspective: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2; /* Ensures carousel is above the background */
+}
+
+.carousel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.carousel-slide {
+    display: flex;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+    transform-style: preserve-3d;
+}
+
+.carousel-slide img {
+    width: 60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.carousel-slide img.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateZ(200px) rotateY(0deg);
+}
+
+.carousel-slide img.prev {
+    transform: translate(-150%, -50%) rotateY(30deg);
+    opacity: 0.5;
+}
+
+.carousel-slide img.next {
+    transform: translate(50%, -50%) rotateY(-30deg);
+    opacity: 0.5;
+}
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    border: none;
+    color: white;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 5px;
+    z-index: 3; /* Ensures controls are above everything */
+}
+
+.carousel-control.prev {
+    left: 10px;
+}
+
+.carousel-control.next {
+    right: 10px;
+}
+
+.carousel-control:hover {
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .carousel-slide img {
+        width: 70%;
+    }
+
+    .carousel-control {
+        padding: 8px;
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-slide img {
+        width: 80%;
+    }
+
+    .carousel-control {
+        padding: 6px;
+        font-size: 18px;
+    }
+
+    .carousel-container {
+        width: 100%;
+    }
+}
